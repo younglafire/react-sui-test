@@ -1,0 +1,25 @@
+export PACKAGE_ID=0xa9377edbf7a8a504fbe44e4eee02b32ffa4449c51bc76a81b99beab8a9f18c11
+export MODULE=dashboard
+
+sui client call \
+  --package 0xa9377edbf7a8a504fbe44e4eee02b32ffa4449c51bc76a81b99beab8a9f18c11 \
+  --module dashboard \
+  --function create_proposal \
+  --args "Proposal 1" "Description 1" 170000000 \
+  --gas-budget 10000000
+
+
+
+sui client ptb \
+    --move-call 0xa9377edbf7a8a504fbe44e4eee02b32ffa4449c51bc76a81b99beab8a9f18c11::dashboard::create_proposal \
+    '"Proposal 2"' '"Description 2"' 180000000 \
+    --move-call 0xa9377edbf7a8a504fbe44e4eee02b32ffa4449c51bc76a81b99beab8a9f18c11::dashboard::create_proposal \
+    '"Proposal 3"' '"Description 3"' 190000000 \
+
+sui client ptb \
+    --move-call 0xa9377edbf7a8a504fbe44e4eee02b32ffa4449c51bc76a81b99beab8a9f18c11::dashboard::create_proposal \
+    '"Proposal 4"' '"Description 2"' 180000000 \
+    --split-coins gas "[1000]" \
+    --assign coin \
+    --transfer-objects "[coin]" \
+    --to 0xa906935db6bf262bcded3ee128fff6fe3e0f86509dc1d00f5b7e7ffdb93b0fbf
